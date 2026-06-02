@@ -22,3 +22,20 @@ jobs:
     # compile the project
     - name: compile the project
       run: mvn compile
+  # step 2: Test job
+  test:
+    name: test java project
+    runs-on: ubuntu-latest
+    steps:
+    # Checkout the repository
+    - uses: actions/checkout@v4
+    # Set up java environment
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    # run tests
+    - name: run tests
+      run: mvn test
